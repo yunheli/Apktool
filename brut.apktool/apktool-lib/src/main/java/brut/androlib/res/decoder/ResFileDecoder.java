@@ -95,7 +95,7 @@ public class ResFileDecoder {
                                 Level.WARNING,
                                 String.format(
                                         "Cant find 9patch chunk in file: \"%s\". Renaming it to *.png.",
-                                        inFileName), ex);
+                                        inFileName), "");
                         outDir.removeFile(outFileName);
                         outFileName = outResName + ext;
                     }
@@ -108,9 +108,11 @@ public class ResFileDecoder {
 
             decode(inDir, inFileName, outDir, outFileName, "xml");
         } catch (AndrolibException ex) {
+
+
             LOGGER.log(Level.SEVERE, String.format(
                     "Could not decode file, replacing by FALSE value: %s",
-                    inFileName), ex);
+                    inFileName), "");
             res.replace(new ResBoolValue(false, 0, null));
         }
     }
